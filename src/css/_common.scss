@@ -33,10 +33,9 @@ img {
 
 /*global*/
 
-
 .container {
-  max-width: 1920px;
-  padding: 0;
+  max-width: 1630px;
+  padding: 0 15px;
   margin: 0 auto;
 }
 
@@ -82,8 +81,14 @@ img {
   font-display: wrap;
 }
 
+.body {
+  min-width: 320px;
+  font-family: 'Open Sans';
+}
+
 .site {
   position: relative;
+  min-width: 1920px;
 }
 
 .title {
@@ -96,22 +101,31 @@ img {
   color: #333333;
 }
 
+.section {
+  padding-top: $sectionPadding;
+}
+
 /*header*/
+
 .header {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
+  position: absolute;
   z-index: 10;
 
-  &__upper {
-    display: flex;
-
-    padding: 30px 160px;
-    background-color: #000;
+  &__container {
     align-items: center;
   }
 
+  &__upper {
+    padding: 30px 0;
+    background-color: #000;
+  }
+
+  &__logo {
+    flex-shrink: 0;
+    font-size: 0;
+    margin-right: 179px;
+  }
   &__burger {
     display: none;
     position: relative;
@@ -188,19 +202,13 @@ img {
     display: none;
   }
 
-
-
-  &__logo {
-    display: block;
-    flex-shrink: 0;
-    font-size: 0;
-    margin-right: 179px;
+  &__burger-content {
+    width: 100%;
+    justify-content: space-between;
   }
 
-
-  &__btn {
-    margin-left: auto;
-    padding-left: 20px;
+  &__login {
+    justify-self: end;
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
@@ -208,19 +216,21 @@ img {
     line-height: 25px;
     text-align: center;
     color: #FFFFFF;
-    // background-image: url('../assets/img/Enter_arrow.svg');
-    // background-position: left center;
-    // background-repeat: no-repeat;
   }
 
-  &__svg-arrow {
-    margin-right: 7px;
+  &__login-svg {
+    margin-right: 2px;
   }
 
   &__lower {
     display: flex;
-    padding: 23px 160px 21px;
+    padding: 23px 0 21px;
     background: rgba(0, 0, 0, 0.4);
+  }
+
+  &__container-lower {
+    width: 100%;
+    justify-content: space-between;
   }
 
   &__search {
@@ -235,59 +245,25 @@ img {
   }
 }
 
-
 .nav {
-  width: 100%;
-
   &__list {
     flex-wrap: wrap;
+    // margin-right: 421px;
+  }
+
+  &__item:not(:last-child) {
+    margin-right: 62px;
   }
 
   &__link {
-    position: relative;
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
     line-height: 25px;
     color: #FFFFFF;
-    z-index: 100;
-    transition: color 0.3s ease-in-out;
-  }
-
-  &__link::after {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    content: '';
-    width: 115%;
-    height: 110%;
-    transform: translate(-50%, -50%);
-    background-color: $darkPurple;
-    z-index: -10;
-    visibility: hidden;
-    transition: visibility 0.3s ease-in-out;
-  }
-
-  &__link:focus:not(:active)::after {
-    visibility: visible;
-  }
-
-  &__link:hover:not(:focus) {
-    color: $purple;
-  }
-
-  &__link:active {
-    color: $darkPurple;
-  }
-
-  &__item:not(:last-child) {
-    margin-right: 62px;
   }
 }
-
-
-
 
 .direction {
   &__list {
@@ -297,6 +273,10 @@ img {
 
   &__item {
     position: relative;
+  }
+
+  &__item:not(:last-child) {
+    margin-right: 96px;
   }
 
   &__dropdown.is-active {
@@ -427,8 +407,7 @@ img {
 
   &__item-btn {
     position: relative;
-    margin-right: 97px;
-    padding-right: 14px;
+    padding-right: 16px;
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
@@ -475,7 +454,6 @@ img {
   }
 }
 
-
 .search-form {
   position: relative;
   margin-left: auto;
@@ -510,23 +488,19 @@ img {
   }
 }
 
-.burger-menu {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.9);
-  z-index: 20;
-  visibility: hidden;
-  transform: translateX(-100%);
-}
-
-
-
 /*hero*/
 .hero {
-  position: relative;
+
+  padding-top: 0;
+
+  &__container {
+    position: relative;
+  }
+
+  &__swiper {
+    width: 100%;
+    height: 800px;
+  }
 
   &__slide-one {
     background-image: url('../assets/img/hero_1.jpg');
@@ -547,15 +521,20 @@ img {
   }
 
   &__content {
-    padding: 233px 160px 122px;
+    width: 100%;
+    position: absolute;
+    top: 233px;
+    left: 15px;
+    // padding: 233px 160px 122px;
     display: flex;
     flex-direction: column;
+    z-index: 10;
   }
 
 
 
   &__title {
-    max-width: calc(590 / 1600 * 100%);
+    max-width: calc(597 / 1600 * 100%);
     margin-bottom: 1px;
     font-family: 'Open Sans';
     font-style: normal;
@@ -595,17 +574,15 @@ img {
 }
 
 /*about*/
-
 .about {
-  &__container {
-    padding: 80px 680px 70px 160px;
-  }
+  padding-bottom: 70px;
 
   &__title {
     color: #333333;
   }
 
   &__descr {
+    width: calc(1080 / 1600 * 100%);
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
@@ -618,13 +595,10 @@ img {
 /*gallery*/
 
 .gallery {
+  background-image: url('../assets/img/gallery.jpg');
+  @include bgStyle;
+  padding-bottom: 80px;
 
-
-  &__container {
-    padding: $sectionPadding 160px;
-    background-image: url('../assets/img/gallery.jpg');
-    @include bgStyle;
-  }
 
   &__wrapper {
 
@@ -677,7 +651,7 @@ img {
     vertical-align: middle;
     width: 12px;
     height: 12px;
-    margin-right: 12px;
+    margin-right: 8px;
     border: 1px solid #FFFFFF;
   }
 
@@ -880,10 +854,6 @@ img {
 /*catalog*/
 
 .catalog {
-  &__container {
-    padding: 80px 160px 0;
-  }
-
 
   &__descr {
     width: calc(1080 / 1600 * 100%);
@@ -1055,10 +1025,6 @@ img {
 /*events*/
 .events {
 
-  &__container {
-    padding: 80px 160px 0 !important;
-  }
-
   &__slides {
     overflow: hidden;
     position: relative;
@@ -1112,8 +1078,8 @@ img {
 
   &__content {
     box-sizing: initial;
-    height: 339px;
-    padding: 13px 50px 48px;
+    height: 348px;
+    padding: 13px 50px 37px;
     flex-direction: column;
   }
 
@@ -1196,13 +1162,10 @@ img {
 /*projects*/
 
 .projects {
-  &__container {
-    padding: 80px 160px;
-  }
 
   &__descr {
     width: calc(1080 / 1600 * 100%);
-    margin-bottom: 30px;
+    margin-bottom: 19px;
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
@@ -1322,9 +1285,9 @@ img {
   }
 
   &__form {
-
-    padding: 38px 160px;
+    padding-top: 36px;
     align-items: center;
+    margin-bottom: 40px;
   }
 
   &__office {
@@ -1358,6 +1321,15 @@ img {
     border: 1px solid #333333;
     border-radius: 100px;
     margin-right: 20px;
+  }
+
+  &__input::placeholder {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 32px;
+    color: #999999;
   }
 
   &__btn {
@@ -1404,13 +1376,11 @@ img {
 
 /*footer*/
 .footer {
-  &__container {
-    background-color: #000;
-  }
+  background-color: #000;
 
   &__content {
     justify-content: space-between;
-    padding: 47px 160px 48px;
+    padding: 44px 0 41px;
   }
 
   &__social-link {
@@ -1420,7 +1390,7 @@ img {
     }
 
     &:not(:last-child) {
-      margin-right: 20px;
+      margin-right: 16px;
     }
 
     &:focus svg {
@@ -1433,234 +1403,6 @@ img {
 
     &:active svg {
       fill: #9D5CD0;
-    }
-  }
-}
-
-
-@media (max-width:1200px) {
-  .header {
-    &__upper {
-      padding: 29px 50px;
-      padding-left: 50px;
-      justify-content: space-between;
-    }
-
-    &__logo {
-      margin-right: 0;
-    }
-
-    &__lower {
-      display: none;
-    }
-
-    &__nav {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 100px 50px 50px;
-      background-color: rgba(0, 0, 0, 0.9);
-      z-index: 10;
-      display: none;
-    }
-
-    &__btn {
-      max-width: 257px;
-      margin: 0;
-      margin-top: auto;
-      padding: 19px 86px 22px;
-      border: 2px solid $purple;
-      border-radius: 100px;
-    }
-
-    &__burger,
-    &__search-add {
-      display: block;
-    }
-  }
-
-  .nav {
-    &__list {
-      flex-direction: column;
-    }
-
-    &__item {
-      font-family: 'Open Sans';
-      font-style: normal;
-      font-weight: 600;
-      font-size: 24px;
-      line-height: 64px;
-      color: #FFFFFF;
-    }
-  }
-
-  /*hero*/
-  .hero {
-    &__content {
-      padding: 205px 50px 114px;
-    }
-
-    &__title {
-      max-width: calc(585 / 924 * 100%);
-    }
-
-    &__descr {
-      max-width: calc(661 / 924 * 100%);
-    }
-  }
-
-  /*about*/
-  .about {
-    &__container {
-      padding-left: 50px;
-      padding-right: 50px;
-    }
-  }
-
-  /*gallery*/
-
-  .gallery {
-    &__container {
-      padding: $sectionPadding 50px;
-    }
-
-    &__left {
-      width: calc(280 / 924 * 100%);
-
-    }
-
-
-
-    &__right {
-      width: calc(594 / 924 * 100%);
-    }
-
-    &-slide::before {
-      padding-top: 315px;
-    }
-  }
-
-  .choices {
-    margin-bottom: 106px !important;
-  }
-
-  .catalog {
-    &__container {
-      padding: 80px 50px 0;
-    }
-
-    &__descr {
-      width: 100%;
-    }
-
-    &__left {
-      width: calc(437 / 924 *100%);
-      padding: 0;
-      margin-right: 50px;
-    }
-
-    &__right {
-      width: calc(437 / 924 * 100%);
-    }
-  }
-
-  .artists {
-    &__list {
-      column-count: 2;
-    }
-
-    &-blank-left {
-      width: calc(189 / 437 *100%);
-      height: 130px;
-      // padding: 12px;
-      background-color: #B7B7B7;
-      box-shadow: inset 8px 8px white, inset -8px -8px white;
-      border: 2px solid #B7B7B7;
-    }
-
-    &-blank-right {
-      flex-direction: column;
-      padding: 0;
-      padding-left: 25px;
-      width: calc(232 / 437 * 100%);
-      height: 130px;
-    }
-  }
-
-  .events {
-    &__container {
-      padding: 80px 50px 0 !important;
-    }
-
-    &__content {
-      height: 422px;
-      padding: 13px 34px 48px;
-    }
-
-    &__image {
-      min-height: 200px;
-    }
-
-    &__place {
-      align-self: flex-end;
-    }
-
-    &__date {
-      align-self: flex-end;
-      margin-bottom: 4px;
-    }
-  }
-
-  .projects {
-    &__container {
-      padding: 80px 50px;
-    }
-
-    &__descr {
-      width: 100%;
-    }
-    &__clients {
-      padding: 0 53px;
-    }
-    &__slide {
-      min-width: calc(384 / 924 * 100%);
-    min-height: 128px;
-    }
-  }
-
-  .contacts {
-    &__form {
-      padding: 43px 50px;
-      flex-direction: column;
-    }
-    &__office {
-      align-self: flex-start;
-      margin-bottom: 30px;
-    }
-    &__submit {
-      margin-bottom: 30px;
-    }
-    &__btn {
-      margin-right: 0;
-      padding: 11px 41px;
-    }
-    &__social {
-      align-self: flex-start;
-    }
-  }
-
-  .footer {
-    &__content {
-      padding: 40px 50px 55px;
-    }
-    &__social-link {
-      & svg {
-        transform: scale(1.33);
-      }
-      &:not(:last-child) {
-        margin-right: 45px;
-      }
     }
   }
 }
