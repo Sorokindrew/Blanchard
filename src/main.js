@@ -1,19 +1,57 @@
 /* burger menu*/
 
 const burger = document.querySelector('.header__burger');
-const menu_nav = document.querySelector('.header__nav');
-const hero = document.querySelector('.hero');
+const burgerContent = document.querySelector('.header__burger-content');
+const menu_nav = document.querySelector('.header__burger-content');
+const menu_item = document.querySelectorAll('.nav__link');
+const loginBtn = document.querySelector('.header__login');
 
 burger.addEventListener('click', () => {
-  if (burger.classList.contains('is-active')) menu_nav.style.display = 'none';
-  else menu_nav.style = `display: flex; flex-direction:column; height: ${hero.clientHeight}px;`;
-  burger.classList.toggle('is-active');
+  burger.classList.toggle('header__burger--active');
+  burgerContent.classList.toggle('header__burger-content--active');
 })
 
-menu_nav.addEventListener('click', ()=>{
-  menu_nav.style = 'display: none;';
-  burger.classList.remove('is-active');
+menu_nav.addEventListener('click', (e) => {
+  if (e.target === burgerContent) {
+    burger.classList.toggle('header__burger--active');
+    burgerContent.classList.toggle('header__burger-content--active');
+  }
+  menu_item.forEach(el => {
+    el.addEventListener('click', (e) => {
+      console.log(e.target)
+      burger.classList.toggle('header__burger--active');
+      burgerContent.classList.toggle('header__burger-content--active');
+    })
+  })
+
+  loginBtn.addEventListener('click', () => {
+    burger.classList.toggle('header__burger--active');
+    burgerContent.classList.toggle('header__burger-content--active');
+  })
 })
+
+
+/*поиск*/
+
+const searchBtn = document.querySelector('.header__search-add');
+const closeSearch = document.querySelector('.header__dropdown-close');
+const searchDrop = document.querySelector('.header__search-dropdown');
+const searchInput = document.querySelector('.header__dropdown-input');
+
+searchBtn.addEventListener('click', ()=>{
+  searchDrop.classList.toggle('header__search-dropdown--active');
+  searchBtn.style = 'opacity: 0';
+})
+
+closeSearch.addEventListener('click', ()=>{
+  searchDrop.classList.toggle('header__search-dropdown--active');
+  searchBtn.style = 'opacity: 1';
+  searchInput.value = '';
+})
+
+
+
+
 
 /*меню для выбора направления*/
 const realism = document.getElementById('realism');
@@ -78,6 +116,9 @@ futurism.addEventListener('click', () => {
   futurDropdown.classList.toggle('is-active');
 })
 
+
+/*swiper hero*/
+
 const swiper = new Swiper('.swiper', {
   // Optional parameters
   // direction: 'vertical',
@@ -94,6 +135,10 @@ const swiper = new Swiper('.swiper', {
   },
 
 });
+
+
+
+/*gallery custom select*/
 
 const selectCustom = document.getElementById('gallery-select');
 const choices = new Choices(selectCustom, {
@@ -120,9 +165,11 @@ const choices = new Choices(selectCustom, {
   searchEnabled: false,
 });
 
+
+
 /*gallery swiper*/
 
-let gallerySlider = new Swiper(".slides-container", {
+const gallerySlider = new Swiper(".slides-container", {
   slidesPerView: 1,
   grid: {
     rows: 1,
@@ -145,6 +192,10 @@ let gallerySlider = new Swiper(".slides-container", {
     },
 
     1200: {
+      slidesPerView: 3,
+      spaceBetween: 20,
+    },
+    1800: {
       slidesPerView: 3,
       spaceBetween: 50
     }
@@ -192,15 +243,46 @@ let gallerySlider = new Swiper(".slides-container", {
   // }
 });
 
+
+
+
+
+
 /*подключение аккордиона*/
 
 new Accordion(".accordion-container", {
   openOnInit: [0]
 });
 
+
+/*табы с художниками*/
+
+const artistBtn = document.querySelectorAll('.artists__link')
+const artistContent = document.querySelectorAll('.artists__info')
+
+artistBtn.forEach(el => {
+  el.addEventListener('click', (e) => {
+    const path = e.currentTarget.dataset.path;
+    console.log(path);
+    artistBtn.forEach(el => {
+      el.classList.remove('artists__link--active');
+    });
+    e.currentTarget.classList.add('artists__link--active');
+
+    artistContent.forEach(el => {
+      el.classList.remove('artists__info--active');
+    })
+    document.querySelector(`[data-target="${path}"]`).classList.add('artists__info--active');
+  })
+})
+
+
+
+
+
 /*swiper events */
 
-let eventsSlider = new Swiper(".events__slides", {
+const eventsSlider = new Swiper(".events__slides", {
   slidesPerView: 1,
   grid: {
     rows: 1,
@@ -212,8 +294,9 @@ let eventsSlider = new Swiper(".events__slides", {
     prevEl: ".events__prev"
   },
   pagination: {
-
-    type: "fraction"
+    el: ".swiper-pagination",
+    clickable: true,
+    // type: "bullet"
   },
 
   breakpoints: {
