@@ -410,6 +410,7 @@ select {
     overflow: auto;
 
     .dropdown__item {
+      position: relative;
       display: flex;
       align-items: center;
       width: 220px;
@@ -417,7 +418,10 @@ select {
       margin-bottom: 20px;
       padding: 0 10px;
       @include bgStyle;
+      transition: border 0.3s ease-in-out;
     }
+
+
 
     .dropdown__item1 {
       background-image: url('../assets/img/realism_1.jpg');
@@ -503,14 +507,60 @@ select {
       margin-bottom: 0;
     }
 
-
-
     .dropdown__link {
       font-weight: 600;
       font-size: 14px;
       line-height: 19px;
       color: #FFFFFF;
+      z-index: 10;
     }
+
+    .dropdown__link::before {
+      position: absolute;
+      content: '';
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      opacity: 0;
+      border: 2px solid $purple;
+      transition: opacity 0.3s ease-in-out;
+      z-index: -1;
+    }
+
+    .dropdown__link::after {
+      position: absolute;
+      content: '';
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: $purple;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      z-index: -1;
+    }
+
+    .dropdown__link:focus::after {
+      opacity: 0.2;
+    }
+
+    .dropdown__link:focus::before {
+      opacity: 1;
+    }
+
+    .dropdown__link:hover::before {
+      opacity: 1;
+    }
+
+    .dropdown__link:active::after {
+      opacity: 0.5;
+    }
+
+    .dropdown__link:active::before {
+      opacity: 0;
+    }
+
   }
 
   &__item-btn {
@@ -702,14 +752,18 @@ select {
     margin: 0;
     padding: 0;
     max-width: 314px;
-    padding: 23px 0;
-    border-radius: 100px;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 25px;
-    text-align: center;
-    color: #FFFFFF;
-    background-color: $purple;
+
+    // padding: 23px 0;
+    span {
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 25px;
+      text-align: center;
+      color: #FFFFFF;
+      background-color: $purple;
+    }
+
     transition: background-color 0.3s ease-in-out;
   }
 
@@ -782,12 +836,12 @@ select {
   background-image: url('../assets/img/gallery.jpg');
   @include bgStyle;
   padding-bottom: 80px;
+  background-size: cover;
 
 
   &__wrapper {
 
     justify-content: space-between;
-    // flex-wrap: wrap;
   }
 
   &__title {
@@ -1257,9 +1311,14 @@ select {
   }
 
   &__list {
+    display: grid;
     padding-top: 25px;
     padding-bottom: 25px;
-    column-count: 3;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(9, 1fr);
+    grid-template-columns: 196px 179px 1fr;
+    gap: 0 60px;
+    // column-count: 3;
   }
 
   &__link {
@@ -1374,9 +1433,9 @@ select {
     width: 50px;
     height: 50px;
     transform: translate(50%, -50%);
-    background-image: url('../assets/img/next_event.svg');
     z-index: 10;
     cursor: pointer;
+    transition: fill 0.3s ease-in-out, stroke 0.3s ease-in-out;
   }
 
   &__prev {
@@ -1386,10 +1445,42 @@ select {
     width: 50px;
     height: 50px;
     transform: translate(-50%, -50%) rotate(180deg);
-    background-image: url('../assets/img/next_event.svg');
     z-index: 10;
     cursor: pointer;
+    transition: fill 0.3s ease-in-out, stroke 0.3s ease-in-out;
   }
+
+  &__svg-round {
+    fill: $grey;
+  }
+
+  &__next:focus &__svg-round {
+    stroke: $purple;
+  }
+
+  &__prev:focus &__svg-round {
+    stroke: $purple;
+  }
+
+  &__next:hover &__svg-round {
+    fill: $extraLightPurple;
+  }
+
+  &__prev:hover &__svg-round {
+    fill: $extraLightPurple;
+  }
+
+  &__next:active &__svg-round {
+    fill: $extraLightPurple;
+    stroke: $purple;
+  }
+
+  &__prev:active &__svg-round {
+    fill: $extraLightPurple;
+    stroke: $purple;
+
+  }
+
 
   &__prev.swiper-button-disabled {
     visibility: hidden;
@@ -1409,7 +1500,7 @@ select {
   }
 
   &__swiper-pagination .swiper-pagination-bullet-active {
-    background-color: $darkGrey !important;
+    background-color: $darkGrey  !important;
   }
 
   &__card {
@@ -1537,12 +1628,78 @@ select {
     color: #333333;
   }
 
+  &__tooltip-round {
+    stroke: $purple;
+    transition: fill 0.3s ease-in-out, stroke 0.3s ease-in-out;
+  }
+
+  &__svg-i {
+    fill: black;
+    transition: fill 0.3s ease-in-out;
+  }
+
+  &__tooltip:focus &__tooltip-round {
+    fill: $extraLightPurple;
+  }
+
+  &__tooltip:hover &__tooltip-round {
+    fill: $extraLightPurple;
+  }
+
+  &__tooltip:active &__tooltip-round {
+    fill: $purple;
+  }
+
+  &__tooltip:active &__svg-i {
+    fill: white;
+  }
+
+
+
   &__subtitle {
     margin-bottom: 23px;
     font-weight: 600;
     font-size: 24px;
     line-height: 32px;
     color: #333333;
+  }
+
+  &__link-text {
+    position: relative;
+    color: $purple;
+    z-index: 10;
+    transition: color 0.3s ease-in-out, text-decoration 0.3s ease-in-out;
+  }
+
+  &__link-text::before {
+    position: absolute;
+    content: '';
+    top: 50%;
+    left: 50%;
+    width: calc(100% + 8px);
+    height: 110%;
+    background-color: $purple;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  &__text-link:focus:not(:active) &__link-text {
+    color: white;
+  }
+
+  &__text-link:focus:not(:active) &__link-text::before {
+    opacity: 1;
+  }
+
+  &__text-link:hover &__link-text {
+    text-decoration: underline;
+  }
+
+  &__text-link:active &__link-text {
+    text-decoration: underline;
+    color: $darkPurple;
   }
 
   &__clients {
@@ -1829,6 +1986,29 @@ select {
   filter: grayscale(1);
 }
 
+.validate {
+  &__name {
+    position: relative;
+  }
+
+  &__phone {
+    position: relative;
+  }
+}
+
+.just-validate-error-field {
+  border: 1px solid $red;
+}
+
+.just-validate-error-label {
+  position: absolute;
+  top: -2px;
+  left: 25px;
+  font-size: 12px;
+  line-height: 16px;
+  transform: translateY(-100%);
+}
+
 /*footer*/
 .footer {
   background-color: #000;
@@ -1839,9 +2019,10 @@ select {
   }
 
   &__social-link {
-
     & svg {
       fill: #CACACA;
+      width: 45px;
+      height: 45px;
     }
 
     &:not(:last-child) {
@@ -1972,7 +2153,7 @@ select {
 
     &__office {
       margin-right: 0;
-      margin-bottom: 30px;
+      margin-bottom: 22px;
     }
 
     &__btn {
@@ -1980,7 +2161,7 @@ select {
     }
 
     &__submit {
-      margin-bottom: 30px;
+      margin-bottom: 27px;
     }
   }
 }
@@ -2050,6 +2231,10 @@ select {
       margin-bottom: 9px;
     }
 
+    &__artist-years {
+      margin-bottom: 16px;
+    }
+
     &__blank-descr {
       line-height: 22px;
       margin-bottom: 15px;
@@ -2058,7 +2243,9 @@ select {
 
   .artists {
     &__list {
-      column-count: 2;
+      grid-template-rows: repeat(12, 1fr);
+      grid-template-columns: 206px 176px;
+      gap: 0 55px;
     }
 
     &-blank-left {
@@ -2075,13 +2262,15 @@ select {
   }
 
   .events {
+    margin-bottom: -3px;
+
     &__image {
       min-height: 200px;
     }
 
     &__content {
-      min-height: 431px;
-      padding: 13px 34px 49px;
+      min-height: 421px;
+      padding: 15px 32px 48px;
     }
 
     &__place {
@@ -2099,6 +2288,7 @@ select {
   }
 
   .projects {
+
     &__descr {
       width: 100%;
     }
@@ -2130,22 +2320,57 @@ select {
     &__social-link {
 
       display: inline-block;
-      width: 60px;
       text-align: center;
 
       &:not(:last-child) {
-        margin-right: 26px;
+        margin-right: 15px;
       }
 
       & svg {
-        transform: scale(1.33);
+        width: 60px;
+        height: 60px;
       }
+    }
+
+    &__content {
+      padding: 38px 0;
     }
   }
 }
 
 
 @media (max-width: 1024px) {
+
+  .hero {
+    &__content {
+      width: calc(100% - 100px);
+    }
+
+    &__title {
+      max-width: calc(585 / 924 * 100%);
+    }
+
+    &__descr {
+      max-width: calc(661 / 924 * 100%);
+    }
+  }
+
+  .gallery {
+    &-slide::before {
+      padding-top: calc(112% - 6px);
+    }
+  }
+
+
+
+  .catalog {
+    &__image {
+      margin-bottom: 27px;
+    }
+  }
+
+
+
   .events {
 
     &__prev,
@@ -2153,13 +2378,474 @@ select {
       display: none;
     }
 
-    &__card {
-      margin-bottom: 30px;
+    &__content {
+      min-height: 421px;
+      padding: 15px 32px 48px;
     }
+
 
     &__swiper-pagination {
       display: block;
       bottom: 0 !important;
+    }
+
+    &__card {
+      margin-bottom: 45px;
+    }
+  }
+
+
+
+}
+
+@media (max-width: 992px) {
+  .header {
+    &__upper {
+      padding-bottom: 28px;
+    }
+  }
+
+  .hero {
+    &__content {
+      width: calc(100% - 100px);
+    }
+
+    &__title {
+      max-width: calc(585 / 668 * 100%);
+    }
+
+    &__descr {
+      max-width: calc(661 / 668 * 100%);
+    }
+  }
+
+  .gallery {
+    &__wrapper {
+      flex-direction: column;
+    }
+
+    &__left {
+      width: 100%;
+    }
+
+    &__right {
+      width: 100%;
+      padding-top: 38px;
+    }
+
+    &-slide::before {
+      padding-top: calc(105% - 6px);
+    }
+
+  }
+
+  .catalog {
+    &__content {
+      flex-direction: column-reverse;
+    }
+
+    &__left,
+    &__right {
+      width: 100%;
+    }
+
+    &__right {
+      margin-bottom: 51px;
+    }
+
+    &__image {
+      margin-bottom: 18px;
+    }
+
+    &__descr {
+      margin-bottom: 19px;
+    }
+
+    &__artist-years {
+      margin-bottom: 6px;
+    }
+  }
+
+  .artists {
+    &__list {
+      grid-template-rows: repeat(9, 1fr);
+      grid-template-columns: 196px 179px 1fr;
+      gap: 0 59px;
+    }
+  }
+
+  .choices {
+    max-width: 281px;
+    margin-bottom: 40px !important;
+  }
+
+  .events {
+    margin-bottom: 0;
+
+    &__content {
+      min-height: 421px;
+      padding: 13px 36px 47px;
+    }
+
+    &__place,
+    &__date {
+      transform: translateX(20px);
+    }
+
+    &__card {
+      margin-bottom: 41px;
+    }
+  }
+
+  .projects {
+    &__descr {
+      margin-bottom: 27px;
+    }
+
+    &__subtitle {
+      margin-bottom: 29px;
+    }
+
+    &__slide {
+      min-height: 105px;
+    }
+
+  }
+
+
+  .contacts {
+    &__office {
+      margin-bottom: 22px;
+    }
+
+    &__input {
+      min-width: 323px;
+      margin-right: 0;
+    }
+
+    &__btn {
+      padding: 11px 28px;
+    }
+
+
+    &__submit {
+      flex-wrap: wrap;
+    }
+  }
+
+  .footer {
+    &__content {
+      padding: 40px 0;
+    }
+  }
+
+  .validate {
+
+    &__name,
+    &__phone {
+      min-width: 323px;
+      margin-bottom: 12px;
+    }
+
+    &__name {
+      margin-right: 20px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  .section {
+    padding-top: 50px;
+  }
+
+  .title {
+    font-size: 28px;
+    line-height: 38px;
+    margin-bottom: 12px;
+  }
+
+  .header {
+    &__upper {
+      padding: 12px 0;
+    }
+
+    &__search-svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    &__burger {
+      width: 25px;
+      height: 18px;
+    }
+
+    &__burger-line {
+      position: absolute;
+      width: 16px;
+      height: 2px;
+    }
+
+    &__burger-line::before {
+      width: 25px;
+      height: 2px;
+      top: -8px;
+    }
+
+    &__burger-line::after {
+      width: 10px;
+      height: 2px;
+      top: 8px;
+    }
+
+    &__burger--active &__burger-line {
+      width: 36px;
+      top: 0;
+      transform: rotate(45deg);
+      transform-origin: center;
+    }
+
+    &__burger--active &__burger-line::before {
+      top: 0;
+      transform: rotate(-90deg);
+      transform-origin: center;
+    }
+
+    &__burger--active &__burger-line::after {
+      opacity: 0;
+    }
+  }
+
+  .hero {
+    padding-top: 0;
+
+    &__content {
+      width: calc(100% - 30px);
+      top: 75px;
+      left: 15px;
+    }
+
+    &__swiper {
+      height: 355px;
+    }
+
+    &__title {
+      max-width: 100%;
+      font-size: 32px;
+      line-height: 44px;
+      text-align: center;
+      margin-bottom: 2px;
+    }
+
+    &__descr {
+      max-width: calc(265 / 290 * 100%);
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 16px;
+      text-align: center;
+      margin-bottom: 41px;
+    }
+
+    &__link {
+      text-align: center;
+
+      span {
+        display: inline-block;
+        text-align: center;
+        font-size: 12px;
+        line-height: 16px;
+        padding: 12px 18px;
+      }
+    }
+  }
+
+  .about {
+    padding-bottom: 41px;
+
+    &__descr {
+      font-size: 14px;
+      line-height: 28px;
+    }
+  }
+
+  .gallery {
+    padding-bottom: 18px;
+
+    &__form-title {
+      margin-bottom: 4px;
+    }
+
+    &__right {
+      display: flex;
+      flex-direction: column-reverse;
+      padding-top: 31px;
+    }
+
+    &__swiper {
+      margin-bottom: 18px;
+    }
+
+    &__navigation {
+      align-self: center;
+    }
+
+    &-slide::before {
+      padding-top: calc(127% - 6px);
+    }
+  }
+
+  .choices {
+    max-width: 290px;
+    margin-bottom: 31px !important;
+  }
+
+  .catalog {
+    &__descr {
+      display: none;
+    }
+
+    &__period-text {
+      font-size: 18px !important;
+      line-height: 32px !important;
+    }
+
+    &__period-btn {
+      padding: 19px 0 !important;
+
+      svg {
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    &__artist-years {
+      margin-bottom: 11px;
+    }
+  }
+
+  .artists {
+    &__list {
+      padding: 20px 0;
+      grid-template-rows: repeat(24, 1fr);
+      grid-template-columns: 1fr;
+      // gap: 0 59px;
+    }
+  }
+
+  .events {
+    &__date {
+      margin-bottom: 9px;
+      transform: translateX(5px);
+    }
+
+    &__content {
+      padding: 17px 22px 39px;
+    }
+
+    &__place {
+      transform: translateX(5px);
+    }
+  }
+
+  :root {
+    --swiper-pagination-bullet-horizontal-gap: 8px;
+  }
+
+  .projects {
+    &__descr {
+      margin-bottom: 50px;
+    }
+
+    &__subtitle {
+      font-size: 18px;
+      line-height: 32px;
+      margin-bottom: 10px;
+    }
+
+    &__slide {
+      min-height: 65px;
+    }
+
+    &__clients {
+      padding: 0 47px;
+    }
+  }
+
+  .contacts {
+    &__container {
+      border: 0;
+    }
+
+    &__form {
+      padding-top: 0;
+    }
+
+    &__name {
+      font-size: 18px;
+      line-height: 25px;
+    }
+
+    &__address {
+      font-size: 14px;
+      line-height: 19px;
+    }
+
+    &__office {
+      margin-bottom: 20px;
+    }
+
+    &__input {
+      min-width: 290px;
+      min-height: 40px;
+    }
+    &__btn {
+      font-size: 12px;
+      line-height: 16px;
+    }
+    &__submit {
+      margin-bottom: 17px;
+    }
+    &__form {
+      margin-bottom: 15px;
+    }
+    &__social-text {
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 32px;
+    }
+    &__social-link {
+      svg {
+        width: 50px;
+        height: 50px;
+      }
+    }
+    &__map {
+      height: 320px;
+    }
+  }
+
+  .validate__name,
+  .validate__phone {
+    margin-bottom: 21px;
+  }
+
+  .footer {
+    &__content {
+      padding: 21px 0 16px;
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+    &__social-link {
+      svg {
+        width: 50px;
+        height: 50px;
+      }
+    }
+    &__social {
+      margin-bottom: 17px;
     }
   }
 }

@@ -1,3 +1,4 @@
+(()=>{
 /* burger menu*/
 
 const burger = document.querySelector('.header__burger');
@@ -125,16 +126,19 @@ const swiper = new Swiper('.swiper', {
   loop: true,
 
   // If we need pagination
-  pagination: {
-    el: '.swiper-pagination',
-  },
+  // pagination: {
+  //   el: '.swiper-pagination',
+  // },
 
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
+  // navigation: {
+  //   nextEl: '.swiper-button-next',
+  //   prevEl: '.swiper-button-prev',
+  // },
 
 });
+
+// const heroSlideTimer = setInterval(()=>{
+//   swiper.slideNext(1000)},10000);
 
 
 
@@ -188,7 +192,7 @@ const gallerySlider = new Swiper(".slides-container", {
   breakpoints: {
     441: {
       slidesPerView: 2,
-      spaceBetween: 34,
+      spaceBetween: 38,
     },
 
     1200: {
@@ -296,16 +300,15 @@ const eventsSlider = new Swiper(".events__slides", {
   pagination: {
     el: ".swiper-pagination",
     clickable: true,
-    // type: "bullet"
   },
 
   breakpoints: {
     441: {
       slidesPerView: 2,
-      spaceBetween: 30
+      spaceBetween: 34
     },
 
-    767: {
+    1023: {
       slidesPerView: 3,
       spaceBetween: 27
     },
@@ -358,6 +361,12 @@ const eventsSlider = new Swiper(".events__slides", {
 });
 
 
+
+/*projects tooltips*/
+
+tippy('.projects__tooltip', );
+
+
 /*projects swiper*/
 let projectsSlider = new Swiper(".projects__swiper", {
   slidesPerView: 1,
@@ -374,6 +383,10 @@ let projectsSlider = new Swiper(".projects__swiper", {
 
   breakpoints: {
     441: {
+      slidesPerView: 2,
+      spaceBetween: 34
+    },
+    1024: {
       slidesPerView: 2,
       spaceBetween: 50
     },
@@ -428,6 +441,44 @@ let projectsSlider = new Swiper(".projects__swiper", {
 });
 
 
+/*validation form*/
+const selector = document.getElementById("phone");
+const im = new Inputmask("+7 (999) 999-99-99");
+im.mask(selector);
+
+const validate = new window.JustValidate('#contacts__form');
+validate
+  .addField('#name', [
+    {
+      rule: 'minLength',
+      value: 3,
+      errorMessage: 'Длина имени более 3 букв',
+    },
+    {
+      rule: 'required',
+      errorMessage: 'Введите имя',
+    },
+    {
+      rule: 'maxLength',
+      value: 30,
+      errorMessage: 'Длина имени не более 30 букв',
+    },
+  ])
+  .addField('#phone', [
+    {
+      rule: 'required',
+      errorMessage: 'Введите номер телефона',
+    },
+    {
+      validator: function (name, value) {
+        const phone = selector.inputmask.unmaskedvalue();
+        return Number(phone) && phone.length === 10;
+      },
+      errorMessage: 'Введите корректный номер телефона',
+    },
+  ]);
+
+
 /*contacts map*/
 
 ymaps.ready(init);
@@ -470,3 +521,5 @@ function init() {
 
   myMap.behaviors.disable('scrollZoom');
 }
+
+})();
