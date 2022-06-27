@@ -137,8 +137,8 @@ const swiper = new Swiper('.swiper', {
 
 });
 
-// const heroSlideTimer = setInterval(()=>{
-//   swiper.slideNext(1000)},10000);
+const heroSlideTimer = setInterval(()=>{
+  swiper.slideNext(1000)},10000);
 
 
 
@@ -248,6 +248,32 @@ const gallerySlider = new Swiper(".slides-container", {
 });
 
 
+/*модальное окно*/
+
+const btn = document.querySelectorAll('.gallery-slide');
+const closeModal = document.querySelector('.modal__close');
+const modal = document.querySelector('.modal');
+
+btn.forEach(el=>{
+  el.addEventListener('click', ()=>{
+    modal.style.display = 'block';
+  })
+})
+
+closeModal.addEventListener('click', ()=>{
+  modal.style.display = 'none';
+})
+
+modal.querySelector('.modal__content').addEventListener('click', (e)=> {
+e._isContentClick = true;
+})
+
+modal.addEventListener('click', (e)=>{
+  if (e._isContentClick) return;
+  modal.style.display = 'none';
+})
+
+
 
 
 
@@ -303,7 +329,7 @@ const eventsSlider = new Swiper(".events__slides", {
   },
 
   breakpoints: {
-    441: {
+    767: {
       slidesPerView: 2,
       spaceBetween: 34
     },
