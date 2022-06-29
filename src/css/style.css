@@ -48,6 +48,12 @@ select {
   font-family: inherit;
 }
 
+a:focus, a:active, button:focus, button:active {
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
 /*global*/
 .container {
   max-width: 1630px;
@@ -141,8 +147,10 @@ select {
   position: relative;
   width: 36px;
   height: 28px;
-  -webkit-transition: translate 0.3s ease-in-out;
-  transition: translate 0.3s ease-in-out;
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
 }
 
 .header__burger-line {
@@ -155,6 +163,10 @@ select {
   left: 0;
   background-color: white;
   z-index: 50;
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
 }
 
 .header__burger-line::before {
@@ -463,6 +475,7 @@ select {
   margin-bottom: 20px;
   padding: 0 10px;
   background-repeat: no-repeat;
+  background-color: #D1A9F0;
   -webkit-transition: border 0.3s ease-in-out;
   transition: border 0.3s ease-in-out;
 }
@@ -790,18 +803,21 @@ select {
   background-image: url("../assets/img/hero_1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-color: #D1A9F0;
 }
 
 .hero__slide-two {
   background-image: url("../assets/img/hero_2.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-color: #D1A9F0;
 }
 
 .hero__slide-three {
   background-image: url("../assets/img/hero_3.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-color: #D1A9F0;
 }
 
 .hero__content {
@@ -929,6 +945,7 @@ select {
   background-repeat: no-repeat;
   padding-bottom: 80px;
   background-size: cover;
+  background-color: #000;
 }
 
 .gallery__wrapper {
@@ -987,6 +1004,7 @@ select {
   border: 1px solid #FFFFFF;
   -webkit-transition: border-color 0.3s ease-in-out;
   transition: border-color 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .gallery__checkbox-visible::before {
@@ -1013,6 +1031,7 @@ select {
   vertical-align: middle;
   -webkit-transition: color 0.3s ease-in-out;
   transition: color 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .gallery__checkbox:checked ~ .gallery__checkbox-visible::before {
@@ -1232,6 +1251,16 @@ select {
 
 .modal__close svg {
   fill: black;
+  -webkit-transition: fill 0.3s ease-in-out;
+  transition: fill 0.3s ease-in-out;
+}
+
+.modal__close:focus svg, .modal__close:hover svg {
+  fill: #9D5CD0;
+}
+
+.modal__close:active svg {
+  fill: #7943A4;
 }
 
 .choices {
@@ -1474,11 +1503,11 @@ select {
   content: '' !important;
 }
 
-.artists__info {
+.artist__info {
   display: none;
 }
 
-.artists__info--active {
+.artist__info--active {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1736,6 +1765,7 @@ select {
   background-image: url("../assets/img/event_1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: #ECECEC;
 }
 
 .events__image2 {
@@ -1985,7 +2015,7 @@ select {
 }
 
 .projects__slide {
-  min-width: calc(450 / 1450 * 100%);
+  min-width: calc((100% - 100px) / 3);
   min-height: 150px;
   -webkit-filter: grayscale(1);
           filter: grayscale(1);
@@ -1994,6 +2024,8 @@ select {
   transition: border-color 0.3s ease-in-out, -webkit-filter 0.3s ease-in-out;
   transition: border-color 0.3s ease-in-out, filter 0.3s ease-in-out;
   transition: border-color 0.3s ease-in-out, filter 0.3s ease-in-out, -webkit-filter 0.3s ease-in-out;
+  background-color: #D1A9F0;
+  cursor: pointer;
 }
 
 .projects__slide:focus {
@@ -2019,54 +2051,63 @@ select {
   background-image: url("../assets/img/project_1.svg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 .projects__slide2 {
   background-image: url("../assets/img/project_2.svg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 .projects__slide3 {
   background-image: url("../assets/img/project_3.svg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 .projects__slide4 {
   background-image: url("../assets/img/project_4.svg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 .projects__slide5 {
   background-image: url("../assets/img/project_5.svg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 .projects__slide6 {
   background-image: url("../assets/img/project_6.svg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 .projects__slide7 {
   background-image: url("../assets/img/project_7.svg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 .projects__slide8 {
   background-image: url("../assets/img/project_8.svg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 .projects__slide9 {
   background-image: url("../assets/img/project_9.svg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 /*contacts*/
@@ -2255,17 +2296,17 @@ select {
   border: 1px solid #9D5CD0;
 }
 
+.contacts__validate-name {
+  position: relative;
+}
+
+.contacts__validate-phone {
+  position: relative;
+}
+
 [class*="ground-pane"] {
   -webkit-filter: grayscale(1);
           filter: grayscale(1);
-}
-
-.validate__name {
-  position: relative;
-}
-
-.validate__phone {
-  position: relative;
 }
 
 .just-validate-error-field {
@@ -2421,6 +2462,9 @@ select {
   }
   .hero__descr {
     max-width: calc(661 / 924 * 100%);
+  }
+  .artists__list {
+    gap: 0;
   }
   .contacts__form {
     -webkit-box-orient: vertical;
@@ -2771,15 +2815,15 @@ select {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
   }
-  .footer__content {
-    padding: 40px 0;
-  }
-  .validate__name, .validate__phone {
+  .contacts__validate-name, .contacts__validate-phone {
     min-width: 323px;
     margin-bottom: 12px;
   }
-  .validate__name {
+  .contacts__validate-name {
     margin-right: 20px;
+  }
+  .footer__content {
+    padding: 40px 0;
   }
 }
 
@@ -3058,6 +3102,7 @@ select {
     font-size: 12px;
     line-height: 16px;
     padding: 11px 33px;
+    max-width: 128px;
   }
   .contacts__btn-text {
     display: none;
@@ -3066,6 +3111,10 @@ select {
     display: block;
   }
   .contacts__submit {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     margin-bottom: 17px;
   }
   .contacts__form {
@@ -3083,8 +3132,7 @@ select {
   .contacts__map {
     height: 320px;
   }
-  .validate__name,
-  .validate__phone {
+  .contacts__validate-name, .contacts__validate-phone {
     margin-bottom: 21px;
   }
   .footer__content {
