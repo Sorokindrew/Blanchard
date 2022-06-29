@@ -66,34 +66,7 @@
     })
     realism.classList.toggle('is-active');
     realismDropdown.classList.toggle('is-active');
-  });
-
-  /*подключение аккордиона*/
-
-  new Accordion(".accordion-container", {
-    openOnInit: [0]
-  });
-
-
-  /*табы с художниками*/
-
-  const artistBtn = document.querySelectorAll('.artists__link')
-  const artistContent = document.querySelectorAll('.artist__info')
-
-  artistBtn.forEach(el => {
-    el.addEventListener('click', (e) => {
-      const path = e.currentTarget.dataset.path;
-      console.log(path);
-      artistBtn.forEach(el => {
-        el.classList.remove('artists__link--active');
-      });
-      e.currentTarget.classList.add('artists__link--active');
-
-      artistContent.forEach(el => {
-        el.classList.remove('artist__info--active');
-      })
-      document.querySelector(`[data-target="${path}"]`).classList.add('artist__info--active');
-    })
+  })
     const impressionism = document.getElementById('impressionism');
     const impressDropdown = document.getElementById('impress-dropdown');
     impressionism.addEventListener('click', () => {
@@ -575,23 +548,21 @@
       myMap.behaviors.disable('scrollZoom');
     }
 
-  })();
+    /*плавный скрол*/
 
+    document.querySelectorAll('.js-scroll-link').forEach(link => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
 
-  /*плавный скрол*/
+        const href = this.getAttribute('href').substring(1);
+        const scrollTarget = document.getElementById(href);
+        const elementPosition = scrollTarget.getBoundingClientRect().top;
 
-  document.querySelectorAll('.js-scroll-link').forEach(link => {
-    link.addEventListener('click', function (e) {
-      e.preventDefault();
-
-      const href = this.getAttribute('href').substring(1);
-      const scrollTarget = document.getElementById(href);
-      const elementPosition = scrollTarget.getBoundingClientRect().top;
-
-      window.scrollBy({
-        top: elementPosition,
-        behavior: 'smooth'
+        window.scrollBy({
+          top: elementPosition,
+          behavior: 'smooth'
+        });
       });
     });
-  });
-});
+
+  })();
