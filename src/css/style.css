@@ -1498,7 +1498,7 @@ select {
   padding-top: 25px;
   padding-bottom: 25px;
   grid-auto-flow: column;
-  -ms-grid-rows: (1fr)[9];
+  /* -ms-grid-rows: (1fr)[9]; */
       grid-template-rows: repeat(9, 1fr);
   -ms-grid-columns: 196px 179px 1fr;
       grid-template-columns: 196px 179px 1fr;
@@ -2511,7 +2511,7 @@ select {
     margin-bottom: 15px;
   }
   .artists__list {
-    -ms-grid-rows: (1fr)[12];
+    /* -ms-grid-rows: (1fr)[12]; */
         grid-template-rows: repeat(12, 1fr);
     -ms-grid-columns: 206px 176px;
         grid-template-columns: 206px 176px;
@@ -2707,7 +2707,7 @@ select {
     margin-bottom: 6px;
   }
   .artists__list {
-    -ms-grid-rows: (1fr)[9];
+    /* -ms-grid-rows: (1fr)[9]; */
         grid-template-rows: repeat(9, 1fr);
     -ms-grid-columns: 196px 179px 1fr;
         grid-template-columns: 196px 179px 1fr;
@@ -2979,7 +2979,7 @@ select {
   }
   .artists__list {
     padding: 20px 0;
-    -ms-grid-rows: (1fr)[24];
+    /* -ms-grid-rows: (1fr)[24]; */
         grid-template-rows: repeat(24, 1fr);
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
