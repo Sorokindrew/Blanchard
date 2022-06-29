@@ -548,7 +548,7 @@
       myMap.behaviors.disable('scrollZoom');
     }
 
-    /*плавный скрол*/
+    /*плавный скролл*/
 
     document.querySelectorAll('.js-scroll-link').forEach(link => {
       link.addEventListener('click', function (e) {
