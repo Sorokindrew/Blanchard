@@ -50,6 +50,11 @@ select {
   font-family: inherit;
 }
 
+a:focus, a:active, button:focus, button:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 
 /*global*/
 
@@ -140,7 +145,7 @@ select {
     position: relative;
     width: 36px;
     height: 28px;
-    transition: translate 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
   }
 
   &__burger-line {
@@ -152,6 +157,7 @@ select {
     left: 0;
     background-color: white;
     z-index: 50;
+    transition: transform 0.3s ease-in-out;
   }
 
   &__burger-line::before {
@@ -436,6 +442,7 @@ select {
       margin-bottom: 20px;
       padding: 0 10px;
       @include bgStyle;
+      background-color: $extraLightPurple;
       transition: border 0.3s ease-in-out;
     }
 
@@ -720,18 +727,21 @@ select {
     background-image: url('../assets/img/hero_1.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    background-color: $extraLightPurple;
   }
 
   &__slide-two {
     background-image: url('../assets/img/hero_2.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    background-color: $extraLightPurple;
   }
 
   &__slide-three {
     background-image: url('../assets/img/hero_3.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    background-color: $extraLightPurple;
   }
 
   &__content {
@@ -856,7 +866,7 @@ select {
   @include bgStyle;
   padding-bottom: 80px;
   background-size: cover;
-
+  background-color: #000;
 
   &__wrapper {
 
@@ -909,6 +919,7 @@ select {
     margin-right: 8px;
     border: 1px solid #FFFFFF;
     transition: border-color 0.3s ease-in-out;
+    cursor: pointer;
   }
 
   &__checkbox-visible::before {
@@ -932,6 +943,7 @@ select {
     color: #FFFFFF;
     vertical-align: middle;
     transition: color 0.3s ease-in-out;
+    cursor: pointer;
   }
 
   &__checkbox:checked~.gallery__checkbox-visible::before {
@@ -1142,6 +1154,18 @@ select {
 
     svg {
       fill: black;
+      transition: fill 0.3s ease-in-out;
+    }
+  }
+  &__close:focus,
+  &__close:hover {
+    svg {
+      fill: $purple;
+    }
+  }
+  &__close:active {
+    svg {
+      fill: $darkPurple;
     }
   }
 }
@@ -1390,8 +1414,7 @@ select {
 .ac-trigger::after {
   content: '' !important;
 }
-
-.artists {
+.artist {
   &__info {
     display: none;
   }
@@ -1400,6 +1423,10 @@ select {
     display: flex;
     flex-direction: column;
   }
+}
+
+.artists {
+
 
   &-blank {
     padding: 25px 0;
@@ -1632,6 +1659,7 @@ select {
     background-image: url('../assets/img/event_1.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: $grey;
   }
 
   &__image2 {
@@ -1877,11 +1905,13 @@ select {
   }
 
   &__slide {
-    min-width: calc(450 / 1450 * 100%);
+    min-width: calc((100% - 100px) / 3);
     min-height: 150px;
     filter: grayscale(1);
     border: 2px solid $grey;
     transition: border-color 0.3s ease-in-out, filter 0.3s ease-in-out;
+    background-color: $extraLightPurple;
+    cursor: pointer;
 
     &:focus {
       border-color: $purple;
@@ -1905,54 +1935,63 @@ select {
     background-image: url('../assets/img/project_1.svg');
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
   }
 
   &__slide2 {
     background-image: url('../assets/img/project_2.svg');
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
   }
 
   &__slide3 {
     background-image: url('../assets/img/project_3.svg');
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
   }
 
   &__slide4 {
     background-image: url('../assets/img/project_4.svg');
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
   }
 
   &__slide5 {
     background-image: url('../assets/img/project_5.svg');
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
   }
 
   &__slide6 {
     background-image: url('../assets/img/project_6.svg');
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
   }
 
   &__slide7 {
     background-image: url('../assets/img/project_7.svg');
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
   }
 
   &__slide8 {
     background-image: url('../assets/img/project_8.svg');
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
   }
 
   &__slide9 {
     background-image: url('../assets/img/project_9.svg');
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
   }
 }
 
@@ -2112,6 +2151,13 @@ select {
   &__social-link:active svg {
     border: 1px solid $purple;
   }
+  &__validate-name {
+    position: relative;
+  }
+
+  &__validate-phone {
+    position: relative;
+  }
 
 }
 
@@ -2119,15 +2165,6 @@ select {
   filter: grayscale(1);
 }
 
-.validate {
-  &__name {
-    position: relative;
-  }
-
-  &__phone {
-    position: relative;
-  }
-}
 
 .just-validate-error-field {
   border: 1px solid $red;
@@ -2281,6 +2318,11 @@ select {
 
     &__descr {
       max-width: calc(661 / 924 * 100%);
+    }
+  }
+  .artists {
+    &__list {
+      gap: 0;
     }
   }
 
@@ -2757,6 +2799,15 @@ select {
     &__submit {
       flex-wrap: wrap;
     }
+    &__validate-name,
+    &__validate-phone {
+      min-width: 323px;
+      margin-bottom: 12px;
+    }
+
+    &__validate-name {
+      margin-right: 20px;
+    }
   }
 
   .footer {
@@ -2765,18 +2816,6 @@ select {
     }
   }
 
-  .validate {
-
-    &__name,
-    &__phone {
-      min-width: 323px;
-      margin-bottom: 12px;
-    }
-
-    &__name {
-      margin-right: 20px;
-    }
-  }
 }
 
 @media (max-width: 767px) {
@@ -3116,6 +3155,7 @@ select {
       font-size: 12px;
       line-height: 16px;
       padding: 11px 33px;
+      max-width: 128px;
     }
 
     &__btn-text {
@@ -3127,6 +3167,7 @@ select {
     }
 
     &__submit {
+      flex-direction: column;
       margin-bottom: 17px;
     }
 
@@ -3150,12 +3191,13 @@ select {
     &__map {
       height: 320px;
     }
-  }
-
-  .validate__name,
-  .validate__phone {
+    &__validate-name,
+    &__validate-phone {
     margin-bottom: 21px;
   }
+  }
+
+
 
   .footer {
     &__content {

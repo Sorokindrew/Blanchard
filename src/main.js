@@ -288,7 +288,7 @@ new Accordion(".accordion-container", {
 /*табы с художниками*/
 
 const artistBtn = document.querySelectorAll('.artists__link')
-const artistContent = document.querySelectorAll('.artists__info')
+const artistContent = document.querySelectorAll('.artist__info')
 
 artistBtn.forEach(el => {
   el.addEventListener('click', (e) => {
@@ -300,9 +300,9 @@ artistBtn.forEach(el => {
     e.currentTarget.classList.add('artists__link--active');
 
     artistContent.forEach(el => {
-      el.classList.remove('artists__info--active');
+      el.classList.remove('artist__info--active');
     })
-    document.querySelector(`[data-target="${path}"]`).classList.add('artists__info--active');
+    document.querySelector(`[data-target="${path}"]`).classList.add('artist__info--active');
   })
 })
 
