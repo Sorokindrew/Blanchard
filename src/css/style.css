@@ -48,7 +48,7 @@ select {
   font-family: inherit;
 }
 
-a:focus, a:active, button:focus, button:active {
+a:focus, a:active, button:focus, button:active, input:focus, input:active {
   outline: none !important;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
@@ -1169,6 +1169,10 @@ a:focus, a:active, button:focus, button:active {
   opacity: 1;
 }
 
+.gallery-slide:hover::before {
+  border: 0;
+}
+
 .gallery-slide:active::before {
   background: -webkit-gradient(linear, left bottom, left top, from(rgba(194, 131, 243, 0.4)), to(rgba(194, 131, 243, 0.4)));
   background: linear-gradient(0deg, rgba(194, 131, 243, 0.4), rgba(194, 131, 243, 0.4));
@@ -1324,7 +1328,7 @@ a:focus, a:active, button:focus, button:active {
       flex-shrink: 0;
   width: 30px;
   height: 30px;
-  background-color: #527590;
+  background-color: #666666;
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -1527,7 +1531,7 @@ a:focus, a:active, button:focus, button:active {
   padding-top: 25px;
   padding-bottom: 25px;
   grid-auto-flow: column;
-  /* -ms-grid-rows: (1fr)[9]; */
+  -ms-grid-rows: (1fr)[9];
       grid-template-rows: repeat(9, 1fr);
   -ms-grid-columns: 196px 179px 1fr;
       grid-template-columns: 196px 179px 1fr;
@@ -2015,6 +2019,8 @@ a:focus, a:active, button:focus, button:active {
 }
 
 .projects__slide {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   min-width: calc((100% - 100px) / 3);
   min-height: 150px;
   -webkit-filter: grayscale(1);
@@ -2555,7 +2561,7 @@ a:focus, a:active, button:focus, button:active {
     margin-bottom: 15px;
   }
   .artists__list {
-    /* -ms-grid-rows: (1fr)[12]; */
+    -ms-grid-rows: (1fr)[12];
         grid-template-rows: repeat(12, 1fr);
     -ms-grid-columns: 206px 176px;
         grid-template-columns: 206px 176px;
@@ -2751,7 +2757,7 @@ a:focus, a:active, button:focus, button:active {
     margin-bottom: 6px;
   }
   .artists__list {
-    /* -ms-grid-rows: (1fr)[9]; */
+    -ms-grid-rows: (1fr)[9];
         grid-template-rows: repeat(9, 1fr);
     -ms-grid-columns: 196px 179px 1fr;
         grid-template-columns: 196px 179px 1fr;
@@ -3023,7 +3029,7 @@ a:focus, a:active, button:focus, button:active {
   }
   .artists__list {
     padding: 20px 0;
-    /* -ms-grid-rows: (1fr)[24]; */
+    -ms-grid-rows: (1fr)[24];
         grid-template-rows: repeat(24, 1fr);
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
@@ -3134,6 +3140,10 @@ a:focus, a:active, button:focus, button:active {
   }
   .contacts__validate-name, .contacts__validate-phone {
     margin-bottom: 21px;
+    min-width: 290px;
+  }
+  .contacts__validate-name {
+    margin-right: 0;
   }
   .footer__content {
     padding: 21px 0 16px;

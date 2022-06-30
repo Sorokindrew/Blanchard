@@ -50,7 +50,7 @@ select {
   font-family: inherit;
 }
 
-a:focus, a:active, button:focus, button:active {
+a:focus, a:active, button:focus, button:active, input:focus, input:active {
   outline: none !important;
   box-shadow: none !important;
 }
@@ -1075,6 +1075,10 @@ a:focus, a:active, button:focus, button:active {
   &-slide:hover::after {
     opacity: 1;
   }
+  &-slide:hover::before {
+    border: 0;
+  }
+
 
   &-slide:active::before {
     background: linear-gradient(0deg, rgba(194, 131, 243, 0.4), rgba(194, 131, 243, 0.4))
@@ -1230,7 +1234,7 @@ a:focus, a:active, button:focus, button:active {
   flex-shrink: 0;
   width: 30px;
   height: 30px;
-  background-color: #527590;
+  background-color: $darkGrey;
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -1905,6 +1909,7 @@ a:focus, a:active, button:focus, button:active {
   }
 
   &__slide {
+    box-sizing: border-box;
     min-width: calc((100% - 100px) / 3);
     min-height: 150px;
     filter: grayscale(1);
@@ -3194,6 +3199,10 @@ a:focus, a:active, button:focus, button:active {
     &__validate-name,
     &__validate-phone {
     margin-bottom: 21px;
+    min-width: 290px;
+  }
+  &__validate-name {
+    margin-right: 0;
   }
   }
 
