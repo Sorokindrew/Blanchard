@@ -1059,6 +1059,10 @@ a:focus, a:active, button:focus, button:active, input:focus, input:active {
   border-color: #C283F3;
 }
 
+.gallery__checkbox:hover ~ .gallery__checkbox-text {
+  color: #C283F3;
+}
+
 .gallery__right {
   width: calc(1150 / 1600 * 100%);
   padding-top: 25px;

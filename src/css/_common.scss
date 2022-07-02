@@ -970,8 +970,9 @@ a:focus, a:active, button:focus, button:active, input:focus, input:active {
   &__checkbox:hover~.gallery__checkbox-visible {
     border-color: $lightPurple;
   }
-
-
+  &__checkbox:hover~.gallery__checkbox-text {
+    color: $lightPurple;
+  }
 
   &__right {
     width: calc(1150 / 1600 * 100%);
